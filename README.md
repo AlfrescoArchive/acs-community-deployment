@@ -4,7 +4,7 @@
 ### Contributing guide
 Please use [this guide](CONTRIBUTING.md) to make a contribution to the project.
 
-This project contains the code for packaging the entire Alfresco Content Services product Community edition.
+This project contains the code for starting the entire Alfresco Content Services product Community edition with **docker or kubernetes**.
 
 ## Docker-compose & Kubernetes
 Start Alfresco Content Services Community using docker-compose or Kubernetes, containing:
@@ -129,10 +129,10 @@ If you want to modify the deployment, and test it, you probably want to use the 
 
 ##### Take the code (and modify it if you want)
 
-From https://github.com/Alfresco/acs-community-packaging
+From https://github.com/Alfresco/acs-community-deployment
 ```bash
-git clone git@github.com:Alfresco/acs-community-packaging.git
-cd acs-community-packaging
+git clone git@github.com:Alfresco/acs-community-deployment.git
+cd acs-community-deployment
 ```
 ##### Update the dependencies required
 
@@ -164,7 +164,7 @@ You can also use kubectl/helm commands to check the status and logs of the pods 
 
 #### Other information
 
-You can find the helm chart [here](https://github.com/Alfresco/acs-community-packaging/tree/master/helm/alfresco-content-services-community).
+You can find the helm chart [here](https://github.com/Alfresco/acs-community-deployment/tree/master/helm/alfresco-content-services-community).
 
 The system should handle pod recreation without any problem - persistent storage is implemented.
 
