@@ -34,7 +34,7 @@ Start Alfresco Content Services Community using docker-compose or Kubernetes, co
 
 #### Assumptions
 
-We will be using minikube to demonstrate how you can deploy the Alfresco Content Services Community helm charts. We will assume that you are familiar with the Kubernetes technology - at least basic knowledge, and there is also the assumption that you have a working minikube setup that you can use. Running some kind of [hello-wold application](https://github.com/kubernetes/helm/blob/master/docs/chart_template_guide/getting_started.md) in your minikube cluster usually proves that it is set up correctly.
+We will be using minikube to demonstrate how you can deploy the Alfresco Content Services Community helm charts. We will assume that you are familiar with the Kubernetes technology - at least basic knowledge, and there is also the assumption that you have a working minikube setup that you can use. Running some kind of [hello-world application](https://github.com/kubernetes/helm/blob/master/docs/chart_template_guide/getting_started.md) in your minikube cluster usually proves that it is set up correctly.
 
 If you are not familiar with [Kubernetes](https://kubernetes.io/) (also written as k8s), there are a lot of tutorials and guides online to get you started. Here are some starting points:
 * https://github.com/kubernetes/kubernetes -> this has a section [To start using kubernetes](https://github.com/kubernetes/kubernetes#to-start-using-kubernetes) with some hands on tutorials.
