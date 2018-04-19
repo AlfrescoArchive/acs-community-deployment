@@ -162,8 +162,8 @@ And after enough time has passed for the minikube to download all the docker ima
 
 You can also use kubectl/helm commands to check the status and logs of the pods in the deployment.
 
-### Customising alfresco deployment.
-Alfresco Content Services is composed out of the following images:
+### Customising alfresco community deployment.
+Alfresco Content Services Community is composed out of the following images:
 1. alfresco-content-repository-community |  [tags](https://hub.docker.com/r/alfresco/alfresco-content-repository-community/tags/)
 5. alfresco-share | [tags](https://hub.docker.com/r/alfresco/alfresco-share/tags/)
 6. alfresco-search-services | [tags](https://hub.docker.com/r/alfresco/alfresco-search-services/tags/)
