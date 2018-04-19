@@ -162,6 +162,33 @@ And after enough time has passed for the minikube to download all the docker ima
 
 You can also use kubectl/helm commands to check the status and logs of the pods in the deployment.
 
+### Customising alfresco deployment.
+Alfresco Content Services is composed out of the following images:
+1. alfresco-content-repository-community |  [tags](https://hub.docker.com/r/alfresco/alfresco-content-repository-community/tags/)
+5. alfresco-share | [tags](https://hub.docker.com/r/alfresco/alfresco-share/tags/)
+6. alfresco-search-services | [tags](https://hub.docker.com/r/alfresco/alfresco-search-services/tags/)
+7. postgres | [tags](https://hub.docker.com/r/library/postgres/tags/)
+
+For docker-compose usage, edit image tags in [docker-compose.yml](https://github.com/Alfresco/acs-community-deployment/blob/master/docker-compose/docker-compose.yml) file.  
+For helm charts usage, edit image tags in [values.yaml](https://github.com/Alfresco/acs-community-deployment/blob/master/helm/alfresco-content-services-community/values.yaml) file.  
+
+```
+project
+│
+└───docker-compose
+│   │
+│   └──docker-compose.yml
+│
+└───helm
+    │  
+    └───alfresco-content-services
+        │
+        └───values.yaml
+```
+
+#### Notes:  
+Not all combination of image tags may work, please use the recommended ones.
+
 #### Other information
 
 You can find the helm chart [here](https://github.com/Alfresco/acs-community-deployment/tree/master/helm/alfresco-content-services-community).

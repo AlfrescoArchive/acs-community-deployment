@@ -50,7 +50,7 @@ solr:
   replicaCount: 1
   image:
     repository: alfresco/alfresco-search-services
-    tag: "1.1.0"
+    tag: "1.1.1"
     pullPolicy: Always
     internalPort: 8983
   service:
