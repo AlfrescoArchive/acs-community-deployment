@@ -20,7 +20,8 @@ repository:
   environment:
     JAVA_OPTS: " -Dsolr.base.url=/solr
       -Dsolr.secureComms=none
-      -Dindex.subsystem.name=solr6"
+      -Dindex.subsystem.name=solr6
+      -Ddeployment.method=HELM_CHART"
   resources:
     requests:
       memory: "1000Mi"
