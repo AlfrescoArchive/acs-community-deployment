@@ -19,12 +19,12 @@ Start Alfresco Content Services Community using docker-compose or Kubernetes, co
 4. Alfresco Solr6  
 
 ### Docker Compose Instructions:
-#### Prerequisite: 
-* Docker installed locally 
+#### Prerequisite:
+* Docker installed locally
 
 #### Steps
 1. Go to **docker-compose** folder
-2. Run ```docker-compose up``` 
+2. Run ```docker-compose up```
 3. Check that everything starts up with the browser: http://localhost:8082/alfresco and http://localhost:8080/share and http://localhost:8083/solr/
 
 #### Notes:
@@ -45,7 +45,7 @@ For these examples, we assume that we will use the default namespace. The profes
 
 #### Step 1: Make sure your minikube is setup, started and running fine
 
-Setting up and starting up minikube may be a little bit different depending on the environment you are working with. Setting up, usually, involves just downloading the **minikube**, **kubectl** and **helm** binaries and adding them to the PATH system variable. 
+Setting up and starting up minikube may be a little bit different depending on the environment you are working with. Setting up, usually, involves just downloading the **minikube**, **kubectl** and **helm** binaries and adding them to the PATH system variable.
 Please use the versions specified here https://github.com/Alfresco/alfresco-infrastructure-deployment .
 
 **Resource requirement for testing**: allocate at least 6GB or RAM, 4 CPU cores and 20GB disk space to your minikube VM.
@@ -83,21 +83,21 @@ kubectl get secrets
 #### Step 2: Install the ingress service:
 ```bash
 helm repo update
-helm install stable/nginx-ingress --version 0.8.11 
-# After running this command look for the name of the ingress deployment. 
+helm install stable/nginx-ingress --version 0.13.0
+# Add '--set rbac.create=true' if the environment has RBAC enabled
+# After running this command look for the name of the ingress deployment.
 # It is usually an animal name preceded by an adjective like: "singed-chipmunk"
 
 # Next get the ip and port of the ingress controller
 minikube ip
 # It will print something like: 172.31.147.123
 
-# To get the port, replace "singed-chipmunk" with the name of 
+# To get the port, replace "singed-chipmunk" with the name of
 # your nginx-ingress-controller deployment
 kubectl get service singed-chipmunk-nginx-ingress-controller -o jsonpath={.spec.ports[0].nodePort}
 # This will print a port like: 30917
 
-# Combine the ip from the prev command and port to get the 
-# dnsaddress value: http://172.31.147.123:30917 that we will use later
+# The ip from the previous command and port will be used later
 ```
 
 #### Step 3 Add the alfresco incubator helm repository
@@ -119,10 +119,10 @@ When you install Alfresco Content Services Community from the alfresco helm repo
 **Note:** Use the correct dnsaddress for your deployment of ingress from the prev Step 2.
 
 ```bash
-helm install alfresco-incubator/alfresco-content-services-community --set dnsaddress="http://172.31.147.123:30917" 
+helm install alfresco-incubator/alfresco-content-services-community --set externalHost="172.31.147.123" --set externalPort="30917"
 ```
 
-#### Alternative Step 4: Deploy Alfresco Content Services Community from the source code 
+#### Alternative Step 4: Deploy Alfresco Content Services Community from the source code
 
 If you want to modify the deployment, and test it, you probably want to use the deployment method from code.
 
@@ -147,7 +147,7 @@ cd ..
 
 ```bash
 # make sure you are in the /helm folder
-helm install alfresco-content-services-community --set dnsaddress="http://172.31.147.123:30917" 
+helm install alfresco-content-services-community --set externalHost="172.31.147.123" --set externalPort="30917"
 ```
 
 #### Step 5: Check that ACS Community is running
@@ -204,5 +204,3 @@ Alternative commands and start up [tutorial with AWS support](https://github.com
 #### Notes:
 * You can also change those values when deploying the helm chart by running ```helm install alfresco-incubator/alfresco-content-services --set repository.image.tag="yourTag" --set share.image.tag="yourTag"```.
 * Hint: Run  ```eval $(minikube docker-env)``` to switch to your minikube docker environment on osx.
-
-
