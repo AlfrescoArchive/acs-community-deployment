@@ -43,9 +43,9 @@ share:
     path: /share
   resources:
     requests:
-      memory: "500Mi"
-    limits:
       memory: "1000Mi"
+    limits:
+      memory: "2500Mi"
 
 persistence:
   existingClaim: "alfresco-volume-claim"
