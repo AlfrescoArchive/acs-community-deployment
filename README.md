@@ -64,6 +64,12 @@ Run this command to initialize helm:
 ```bash
 helm init
 ```
+Note: If you are using minikube 0.26.0+ (with RBAC) use the following:
+```bash
+kubectl create serviceaccount --namespace kube-system tiller
+kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+helm init --service-account tiller
+```
 
 ##### commands to check the minikube kubernetes cluster is running:
 ```bash
@@ -83,7 +89,7 @@ kubectl get secrets
 #### Step 2: Install the ingress service:
 ```bash
 helm repo update
-helm install stable/nginx-ingress --version 0.13.0
+helm install stable/nginx-ingress --version 0.14.0
 # Add '--set rbac.create=true' if the environment has RBAC enabled
 # After running this command look for the name of the ingress deployment.
 # It is usually an animal name preceded by an adjective like: "singed-chipmunk"
@@ -97,7 +103,8 @@ minikube ip
 kubectl get service singed-chipmunk-nginx-ingress-controller -o jsonpath={.spec.ports[0].nodePort}
 # This will print a port like: 30917
 
-# The ip from the previous command and port will be used later
+# Remember the ip from the prev command and port to get the
+# external address value: http://172.31.147.123:30917 that we will use later
 ```
 
 #### Step 3 Add the alfresco incubator helm repository
@@ -116,10 +123,10 @@ When you install Alfresco Content Services Community from the alfresco helm repo
 
 ##### Install ACS Community:
 
-**Note:** Use the correct dnsaddress for your deployment of ingress from the prev Step 2.
+**Note:** Use the correct external address for your deployment of ingress from the prev Step 2.
 
 ```bash
-helm install alfresco-incubator/alfresco-content-services-community --set externalHost="172.31.147.123" --set externalPort="30917"
+helm install alfresco-incubator/alfresco-content-services-community --set externalProtocol="http" --set externalHost="172.31.147.123" --set externalPort="30917"
 ```
 
 #### Alternative Step 4: Deploy Alfresco Content Services Community from the source code
@@ -147,7 +154,7 @@ cd ..
 
 ```bash
 # make sure you are in the /helm folder
-helm install alfresco-content-services-community --set externalHost="172.31.147.123" --set externalPort="30917"
+helm install alfresco-content-services-community --set externalProtocol="http" --set externalHost="172.31.147.123" --set externalPort="30917"
 ```
 
 #### Step 5: Check that ACS Community is running
