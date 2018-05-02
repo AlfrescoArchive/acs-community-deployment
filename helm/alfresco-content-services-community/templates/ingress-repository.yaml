@@ -8,6 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/affinity: "cookie"
     nginx.ingress.kubernetes.io/session-cookie-name: "affinity-route"
     nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
+
 spec:
   rules:
   - http:
@@ -15,4 +16,4 @@ spec:
       - path: {{ .Values.repository.ingress.path }}
         backend:
           serviceName: {{ template "content-services.fullname" . }}-repository
-          servicePort: {{ .Values.externalPort | default .Values.repository.service.externalPort }}
+          servicePort: {{ .Values.repository.service.externalPort }}
