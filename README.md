@@ -29,6 +29,7 @@ Start Alfresco Content Services Community using docker-compose or Kubernetes, co
 
 #### Notes:
 * Make sure the local machine has the ports (5432, 8080, 8082, 8083) set up in the docker-compose.yml file free.
+* For testing purposes you can enable browser's native login prompt, adding `-Dalfresco.restApi.basicAuthScheme=true` in your [docker-compose.yml](./docker-compose/docker-compose.yml) file under JAVA_OPTS environment variables.
 
 ### How to get started with Kubernetes and Alfresco Content Services Community.
 
