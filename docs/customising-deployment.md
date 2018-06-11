@@ -9,7 +9,7 @@ Alfresco Content Services Community is composed of the following images:
 
 For Docker Compose usage, edit the image tags in the [docker-compose.yml](https://github.com/Alfresco/acs-community-deployment/blob/master/docker-compose/docker-compose.yml) file.  
 
-For Helm charts usage, edit the image tags in the  [values.yaml](https://github.com/Alfresco/acs-community-deployment/blob/master/helm/alfresco-content-services/values.yaml) file.  
+For Helm charts usage, edit the image tags in the  [values.yaml](https://github.com/Alfresco/acs-community-deployment/blob/master/helm/alfresco-content-services-community/values.yaml) file.  
 
 ```
 project
