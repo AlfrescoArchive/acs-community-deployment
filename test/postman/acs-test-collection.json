@@ -29,7 +29,7 @@
 									"",
 									"",
 									"pm.test(\"validateLicenseTest\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"COMMUNITY\");",
+									"    pm.expect(pm.response.text()).to.include(\"Community\");",
 									"});",
 									""
 								]
