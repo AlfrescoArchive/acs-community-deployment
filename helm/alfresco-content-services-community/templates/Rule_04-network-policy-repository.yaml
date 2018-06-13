@@ -28,11 +28,6 @@ spec:
           matchLabels:
             app: {{ template "content-services.fullname" . }}-share
 
-      # Allow traffic from transformers
-      - podSelector:
-          matchLabels:
-            component: transformers
-
       ports:
         - protocol: TCP
           port: 8080
@@ -70,11 +65,6 @@ spec:
       - podSelector:
           matchLabels:
              app: {{ template "content-services.fullname" . }}-share
-
-      # Transformers
-      - podSelector:
-          matchLabels:
-             component: transformers
 
       # nginx-ingress
       - podSelector:
