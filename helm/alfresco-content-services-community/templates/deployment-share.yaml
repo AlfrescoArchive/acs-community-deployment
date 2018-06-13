@@ -1,3 +1,4 @@
+# Defines the deployment for the alfresco share app
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -7,6 +8,7 @@ metadata:
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+    component: share
 spec:
   replicas: {{ .Values.share.replicaCount }}
   template:
@@ -14,9 +16,13 @@ spec:
       labels:
         app: {{ template "content-services.fullname" . }}-share
         release: {{ .Release.Name }}
+        component: share
     spec:
+      {{- if .Values.registryPullSecrets }}
+      # only set this secret if a private docker registry variable is defined
       imagePullSecrets:
         - name: {{ .Values.registryPullSecrets }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.share.image.repository }}:{{ .Values.share.image.tag }}"
@@ -28,3 +34,18 @@ spec:
           envFrom:
           - configMapRef:
               name: {{ template "content-services.fullname" . }}-share-configmap
+          readinessProbe:
+            httpGet:
+              path: /share
+              port: {{ .Values.share.image.internalPort }}
+            initialDelaySeconds: {{ .Values.share.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.share.readinessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.share.readinessProbe.timeoutSeconds }}
+          livenessProbe:
+            httpGet:
+              path: /share
+              port: {{ .Values.share.image.internalPort }}
+            initialDelaySeconds: {{ .Values.share.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.share.livenessProbe.periodSeconds }}
+            failureThreshold: 1
+            timeoutSeconds: {{ .Values.share.livenessProbe.timeoutSeconds }}

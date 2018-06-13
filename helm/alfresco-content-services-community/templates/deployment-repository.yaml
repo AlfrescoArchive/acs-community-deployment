@@ -1,3 +1,4 @@
+# Defines the deployment for the alfresco content repository app
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -7,6 +8,7 @@ metadata:
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+    component: repository
 spec:
   replicas: {{ .Values.repository.replicaCount }}
   template:
@@ -14,15 +16,20 @@ spec:
       labels:
         app: {{ template "content-services.fullname" . }}-repository
         release: {{ .Release.Name }}
+        component: repository
     spec:
+      {{- if .Values.registryPullSecrets }}
+      # only set this secret if a private docker registry variable is defined
       imagePullSecrets:
         - name: {{ .Values.registryPullSecrets }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.repository.image.repository }}:{{ .Values.repository.image.tag }}"
           imagePullPolicy: {{ .Values.repository.image.pullPolicy }}
           envFrom:
           - configMapRef:
+              # config map to use, defined in config-repository.yaml
               name: {{ template "content-services.fullname" . }}-repository-configmap
           ports:
             - containerPort: {{ .Values.repository.image.internalPort }}
@@ -32,7 +39,24 @@ spec:
           - name: data
             mountPath: {{ .Values.persistence.repository.data.mountPath }}
             subPath: {{ .Values.persistence.repository.data.subPath }}
+          readinessProbe:
+            httpGet:
+              path: /alfresco/api/-default-/public/alfresco/versions/1/probes/-ready-
+              port: {{ .Values.repository.image.internalPort }}
+            initialDelaySeconds: {{ .Values.repository.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.repository.readinessProbe.periodSeconds }}
+            failureThreshold: {{ .Values.repository.readinessProbe.failureThreshold }}
+            timeoutSeconds: {{ .Values.repository.readinessProbe.timeoutSeconds }}
+          livenessProbe:
+            httpGet:
+              path: /alfresco/api/-default-/public/alfresco/versions/1/probes/-live-
+              port: {{ .Values.repository.image.internalPort }}
+            initialDelaySeconds: {{ .Values.repository.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.repository.livenessProbe.periodSeconds }}
+            failureThreshold: 1
+            timeoutSeconds: {{ .Values.repository.livenessProbe.timeoutSeconds }}
       initContainers:
+        # wait for the DB to startup before this deployment can start
         - name: init-db
           image: busybox
           command: ['sh', '-c', 'until nc -w1 {{ template "database.hostname" . }} {{ template "database.port" . }}; do echo "waiting for {{ .Values.database.type }}"; sleep 2; done;']
