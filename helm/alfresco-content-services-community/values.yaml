@@ -12,7 +12,7 @@
 repository:
   replicaCount: 1
   image:
-    repository: alfresco/alfresco-content-repository
+    repository: alfresco/alfresco-content-repository-community
     tag: "latest"
     pullPolicy: Always
     internalPort: 8080
