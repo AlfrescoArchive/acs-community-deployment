@@ -1,6 +1,10 @@
 
 # Alfresco Content Services Community Deployment
 
+
+### Contributing guide
+Please use [this guide](CONTRIBUTING.md) to make a contribution to the project.
+
 This project contains the code for starting the entire Alfresco Content Services (Community Edition) product with **Docker** or **Kubernetes**.
 
 For the Enterprise project, go to [acs-deployment](https://github.com/Alfresco/acs-deployment). The only difference between these projects are:
@@ -24,9 +28,9 @@ Alfresco Content Services Community deployed via `docker-compose` or Kubernetes 
 To deploy Alfresco Content Services Community, follow the steps in the [acs-deployment](https://github.com/Alfresco/acs-deployment) project using the links provided.
 
 **Note:** You'll need to adapt some steps and commands for the Community release. Replace any occurrences of `alfresco-content-repository` with `alfresco-content-repository-community` to ensure you're using the Community release. Example commands may need to be changed when cloning the Community project, changing directory, or deploying the Community Helm chart:
-* [Deploying with Helm charts on AWS](https://github.com/Alfresco/acs-deployment/docs/helm-deployment-aws_cloud.md)
-* [Deploying with Helm charts using Minikube](https://github.com/Alfresco/acs-deployment/docs/helm-deployment-minikube.md)
-* [Deploying using Docker Compose](https://github.com/Alfresco/acs-deployment/docs/docker-compose-deployment.md)
+* [Deploying with Helm charts on AWS](https://github.com/Alfresco/acs-deployment/blob/master/docs/helm-deployment-aws_cloud.md)
+* [Deploying with Helm charts using Minikube](https://github.com/Alfresco/acs-deployment/blob/master/docs/helm-deployment-minikube.md)
+* [Deploying using Docker Compose](https://github.com/Alfresco/acs-deployment/blob/master/docs/docker-compose-deployment.md)
 
 Use the steps in this project to customize your deployment:
 * [Customizing your deployment](docs/customising-deployment.md)
@@ -38,7 +42,3 @@ Use the steps in this project to customize your deployment:
 * [Tips and tricks](https://github.com/Alfresco/alfresco-anaxes-shipyard/blob/master/docs/tips-and-tricks.md) for working with Kubernetes and Alfresco Content Services.
 
 **Note:** You'll need to adapt some steps and commands for the Community release.
-
-
-### Contributing guide
-Please use [this guide](CONTRIBUTING.md) to make a contribution to the project.
