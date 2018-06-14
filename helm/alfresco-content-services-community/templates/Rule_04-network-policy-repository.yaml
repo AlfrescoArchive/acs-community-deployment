@@ -7,7 +7,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app: {{ template "content-services.fullname" . }}-repository
+      app: {{ template "content-services.shortname" . }}-repository
   policyTypes:
   - Ingress
   - Egress
@@ -26,7 +26,7 @@ spec:
       # Allow traffic from share
       - podSelector:
           matchLabels:
-            app: {{ template "content-services.fullname" . }}-share
+            app: {{ template "content-services.shortname" . }}-share
 
       ports:
         - protocol: TCP
@@ -38,7 +38,7 @@ spec:
     - from:
       - podSelector:
           matchLabels:
-            app: {{ template "content-services.fullname" . }}-repository
+            app: {{ template "content-services.shortname" . }}-repository
       ports:
         - protocol: TCP
           port: 5701
@@ -54,7 +54,7 @@ spec:
       # Repo (clustering)
       - podSelector:
           matchLabels:
-             app: {{ template "content-services.fullname" . }}-repository
+             app: {{ template "content-services.shortname" . }}-repository
       
       # Search (solr)
       - podSelector:
@@ -64,7 +64,7 @@ spec:
       # Share
       - podSelector:
           matchLabels:
-             app: {{ template "content-services.fullname" . }}-share
+             app: {{ template "content-services.shortname" . }}-share
 
       # nginx-ingress
       - podSelector:
