@@ -1,3 +1,4 @@
+# Defines the service for the alfresco share app
 apiVersion: v1
 kind: Service
 metadata:
@@ -7,6 +8,7 @@ metadata:
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+    component: share
 spec:
   type: {{ .Values.share.service.type }}
   ports:
