@@ -30,6 +30,4 @@ project
 * You can modify the values provided in [values.yaml](https://github.com/Alfresco/acs-community-deployment/blob/master/helm/alfresco-content-services-community/values.yaml) when deploying the Helm chart. For example, you can run:
 ```bash
 helm install alfresco-incubator/alfresco-content-services-community --set repository.image.tag="yourTag" --set share.image.tag="yourTag"
-```
-* The system should handle pod recreation without any problem as persistent storage is implemented.
-* You can run ```eval $(minikube docker-env)``` to switch to your Minikube Docker environment on Mac OS X.
+``` 

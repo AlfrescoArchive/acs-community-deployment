@@ -40,5 +40,3 @@ Use the steps in this project to customize your deployment:
 
 * See alternative commands and start up [tutorial with AWS support](https://github.com/Alfresco/alfresco-anaxes-shipyard/blob/master/docs/running-a-cluster.md)
 * [Tips and tricks](https://github.com/Alfresco/alfresco-anaxes-shipyard/blob/master/docs/tips-and-tricks.md) for working with Kubernetes and Alfresco Content Services.
-
-**Note:** You'll need to adapt some steps and commands for the Community release.
