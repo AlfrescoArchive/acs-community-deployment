@@ -17,7 +17,7 @@ You can also perform the following:
 
 Please follow the [coding standards](https://community.alfresco.com/docs/DOC-4658-coding-standards).
 
-Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
+This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
 available at [http://contributor-covenant.org/version/1/4][version]
 
 [homepage]: http://contributor-covenant.org
