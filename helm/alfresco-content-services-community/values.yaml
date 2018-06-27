@@ -117,7 +117,7 @@ alfresco-search:
     port: *repositoryExternalPort
   ingress:
     # Alfresco Search services endpoint ('/solr') is disabled by default
-    # To enable it please see: acs-deployment configuration table](https://github.com/Alfresco/acs-deployment/tree/master/helm/alfresco-content-services#configuration)
+    # To enable it please see: https://github.com/Alfresco/acs-community-deployment/blob/master/helm/alfresco-content-services-community/README.md#configuration
     enabled: false
 
 # choose if you want network policy enabled
