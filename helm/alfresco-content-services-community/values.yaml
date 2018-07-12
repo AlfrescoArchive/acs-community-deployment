@@ -22,6 +22,7 @@ repository:
     externalPort: &repositoryExternalPort 80
   ingress:
     path: /alfresco
+    maxUploadSize: "5g"
   environment:
     JAVA_OPTS: " -Dsolr.base.url=/solr
       -Dsolr.secureComms=none
@@ -44,6 +45,11 @@ repository:
     initialDelaySeconds: 130
     periodSeconds: 20
     timeoutSeconds: 10
+
+# Declares the api-explorer service used by the content repository
+apiexplorer:
+  ingress:
+    path: /api-explorer
 
 # Define the alfresco-share properties to use in the k8s cluster
 # This is the default presentation layer(UI) of Alfresco Content Services
