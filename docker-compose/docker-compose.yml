@@ -52,3 +52,11 @@ services:
             - SOLR_CREATE_ALFRESCO_DEFAULTS=alfresco,archive
         ports:
             - 8083:8983 #Browser port
+
+    activemq:
+        image: webcenter/activemq:5.14.3
+        ports:
+            - 8161:8161 # Web Console
+            - 5672:5672 # AMQP
+            - 61616:61616 # OpenWire
+            - 61613:61613 # STOMP
