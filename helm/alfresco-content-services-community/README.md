@@ -25,7 +25,7 @@ This chart bootstraps an ACS deployment on a [Kubernetes](http://kubernetes.io) 
 
 ## Prerequisites
   - Kubernetes 1.4+ with Beta APIs enabled
-  - Minimum of 16GB Memory to distribute among ACS Cluster nodes
+  - Minimum of 12GB Memory to distribute among ACS Cluster nodes
 
 ## Installing the Chart
 

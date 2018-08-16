@@ -1,6 +1,6 @@
 # This is a YAML-formatted file.  Declare variables to be passed into your templates.
 
-# ACS will be created in a k8s cluster with a minimum of 16GB memory to split among below nodes:
+# ACS will be created in a k8s cluster with a minimum of 12GB memory to split among below nodes:
 # 1 x repository, 1 x share and 1 x postgresql
 
 # Limit container memory and assign X percentage to JVM.  There are couple of ways to allocate JVM Memory for ACS Containers
