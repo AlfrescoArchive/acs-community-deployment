@@ -2,7 +2,7 @@ version: "3"
 
 services:
     alfresco:
-        image: alfresco/alfresco-content-repository-community:6.0.7-ga
+        image: alfresco/alfresco-content-repository-community:6.1.0-ea
         environment:
             JAVA_OPTS : "
                 -Ddb.driver=org.postgresql.Driver
@@ -22,7 +22,7 @@ services:
             - 8082:8080 #Browser port
 
     share:
-        image: alfresco/alfresco-share:6.0.b
+        image: alfresco/alfresco-share:6.0.c
         environment:
             - REPO_HOST=alfresco
             - REPO_PORT=8080
