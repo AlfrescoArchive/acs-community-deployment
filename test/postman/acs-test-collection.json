@@ -734,7 +734,7 @@
 					"response": []
 				},
 				{
-					"name": "share-alfresco /.*/service/api/solr/.*",
+					"name": "share-alfresco service",
 					"event": [
 						{
 							"listen": "test",
@@ -744,7 +744,7 @@
 								"exec": [
 									"pm.globals.get(\"url\");",
 									"",
-									"pm.test(\"searchAlfrescoProxyCodeTest_service\", function () {",
+									"pm.test(\"searchAlfrescoCodeTest_service\", function () {",
 									"    pm.response.to.have.status(403);",
 									"});",
 									""
@@ -807,12 +807,12 @@
 								}
 							]
 						},
-						"description": "Check share access to alfresco via proxy is forbidden for some regex patterns"
+						"description": "Check solr api access through alfresco is forbidden"
 					},
 					"response": []
 				},
 				{
-					"name": "share-alfresco /.*/s/api/solr/.*",
+					"name": "share-alfresco s",
 					"event": [
 						{
 							"listen": "test",
@@ -885,12 +885,12 @@
 								}
 							]
 						},
-						"description": "Check share access to alfresco via proxy is forbidden for some regex patterns"
+						"description": "Check solr api access through alfresco is forbidden"
 					},
 					"response": []
 				},
 				{
-					"name": "share-alfresco /.*/wcservice/api/solr/.*",
+					"name": "share-alfresco wcservice",
 					"event": [
 						{
 							"listen": "test",
@@ -963,12 +963,12 @@
 								}
 							]
 						},
-						"description": "Check share access to alfresco via proxy is forbidden for some regex patterns"
+						"description": "Check solr api access through alfresco is forbidden"
 					},
 					"response": []
 				},
 				{
-					"name": "share-alfresco /.*/wcs/api/solr/.*",
+					"name": "share-alfresco wcs",
 					"event": [
 						{
 							"listen": "test",
@@ -1041,7 +1041,7 @@
 								}
 							]
 						},
-						"description": "Check share access to alfresco via proxy is forbidden for some regex patterns"
+						"description": "Check solr api access through alfresco is forbidden"
 					},
 					"response": []
 				},
