@@ -69,7 +69,7 @@ services:
             - 8083:8983 #Browser port
 
     activemq:
-        image: webcenter/activemq:5.14.3
+        image: alfresco/alfresco-activemq:5.15.6
         mem_limit: 2048m
         ports:
             - 8161:8161 # Web Console
