@@ -1,6 +1,6 @@
 name: alfresco-content-services-community
 version: 1.0.2
-appVersion: 6.1.0-ea
+appVersion: 6.1.1
 description: A Helm chart for deploying Alfresco Content Services Community
 keywords:
 - community
