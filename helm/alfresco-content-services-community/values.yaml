@@ -118,8 +118,8 @@ alfresco-infrastructure:
 alfresco-search:
   enabled: true
   repository:
-    # The value for "host" is the name of this chart 
-    host: alfresco-content-services-community
+    # The value for "host" is the name of this chart (will be suffixed with -repository by alfresco-search)
+    host: alfresco-cs-ce
     port: *repositoryExternalPort
   ingress:
     # Alfresco Search services endpoint ('/solr') is disabled by default
