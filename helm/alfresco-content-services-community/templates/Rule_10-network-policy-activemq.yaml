@@ -1,0 +1,19 @@
+{{- if .Values.networkpolicysetting.enabled }}
+# Allow activemq communication with other components
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: activemq
+spec:
+  podSelector:
+    matchLabels:
+      app: {{ printf "%s-%s" .Release.Name "activemq" }}
+  policyTypes:
+  - Ingress
+  ingress:
+    - from:
+      # Repository
+      - podSelector:
+          matchLabels:
+            app: {{ template "content-services.shortname" . }}-repository
+{{- end }}

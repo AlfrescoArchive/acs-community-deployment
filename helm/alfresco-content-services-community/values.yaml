@@ -104,15 +104,9 @@ alfresco-content-services:
 # All the components from the alfresco-infrastructure are disabled, because Alfresco Content Services product helm chart
 # only needs the pvc defined in the dependency alfresco-infrastructure
 alfresco-infrastructure:
-  rabbitmq-ha:
-    enabled: false
   activemq:
-    enabled: false
+    enabled: true
   alfresco-identity-service:
-    enabled: false
-  alfresco-activiti-cloud-registry:
-    enabled: false
-  alfresco-api-gateway:
     enabled: false
 
 alfresco-search:
