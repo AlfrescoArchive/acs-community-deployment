@@ -31,10 +31,7 @@ data:
       -Dcsrf.filter.referer={{ $alfprotocol }}://{{ $alfhost }}/.*
       -Dsolr.host={{ template "alfresco-search.host" . }}
       -Dsolr.port={{ template "alfresco-search.port" . }}
-      -Dalfresco-pdf-renderer.url=http://{{ template "content-services.shortname" . }}-pdfrenderer
-      -Dimg.url=http://{{ template "content-services.shortname" . }}-imagemagick
-      -Djodconverter.url=http://{{ template "content-services.shortname" . }}-libreoffice
-      -Dtika.url=http://{{ template "content-services.shortname" . }}-tika"
+      -Dmessaging.broker.url=failover:(nio://{{ .Release.Name }}-activemq-broker:61616)?timeout=3000&jms.useCompression=true"
   CATALINA_OPTS: " $ALFRESCO_OPTS 
       -Ddb.driver={{ .Values.database.driver | default "org.postgresql.Driver" }}
       {{- if eq .Values.database.external false }}

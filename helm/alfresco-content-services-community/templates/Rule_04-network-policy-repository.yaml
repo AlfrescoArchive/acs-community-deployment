@@ -66,6 +66,11 @@ spec:
       - podSelector:
           matchLabels:
              app: {{ template "content-services.shortname" . }}-share
+      
+      # Activemq
+      - podSelector:
+          matchLabels:
+            app: {{ printf "%s-%s" .Release.Name "activemq" }}
 
       # nginx-ingress
       - podSelector:
@@ -89,4 +94,6 @@ spec:
       ports:
       - protocol: TCP
         port: 2049
+      - protocol: TCP
+        port: 61616
 {{- end }}
