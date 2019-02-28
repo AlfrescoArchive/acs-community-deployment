@@ -33,6 +33,12 @@ services:
                 "
         ports:
             - 8082:8080 #Browser port
+        depends_on:
+            - share
+            - postgres
+            - solr6
+            - activemq
+        restart: always
 
     share:
         image: alfresco/alfresco-share:6.1.0-RC3
