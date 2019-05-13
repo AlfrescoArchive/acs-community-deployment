@@ -41,6 +41,11 @@ spec:
           - name: data
             mountPath: {{ .Values.persistence.repository.data.mountPath }}
             subPath: {{ .Values.persistence.repository.data.subPath }}
+          {{- range .Values.repository.extraConfigmapMounts }}
+          - name: {{ .name }}
+            mountPath: {{ .mountPath }}
+            readOnly: {{ .readOnly }}
+          {{- end }}
           readinessProbe:
             httpGet:
               path: /alfresco/api/-default-/public/alfresco/versions/1/probes/-ready-
@@ -68,3 +73,8 @@ spec:
       - name: data
         persistentVolumeClaim:
           claimName: {{ .Values.persistence.existingClaim }}
+      {{- range .Values.repository.extraConfigmapMounts }}
+      - name: {{ .name }}
+        configMap:
+          name: {{ .configMap }}
+      {{- end }}

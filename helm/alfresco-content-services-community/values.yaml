@@ -29,6 +29,17 @@ repository:
       -Dindex.subsystem.name=solr6
       -Ddeployment.method=HELM_CHART
       -Xms2000M -Xmx2000M"
+  extraConfigmapMounts: []
+  # Override example:
+  #
+  # - name: platform-classes-configmap
+  #   mountPath: /usr/local/tomcat/shared/classes
+  #   configMap: platform-classes-configmap
+  #   readOnly: true
+  # - name: extension-classes-configmap
+  #   mountPath: /usr/local/tomcat/shared/classes/alfresco/extension
+  #   configMap: extension-classes-configmap
+  #   readOnly: true
   resources:
     requests:
       memory: "3000Mi"
