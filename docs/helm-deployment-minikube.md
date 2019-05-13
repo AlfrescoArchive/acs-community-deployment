@@ -12,9 +12,9 @@ To run the Alfresco Content Services Community deployment using Minikube require
 
 ### Starting Minikube VM
 
-* Allocate at least 16GB RAM (to distribute among the Alfresco Content Services Community cluster nodes), 2 CPU cores, and 20GB disk space to the Minikube VM:
+* Allocate at least 12GB RAM, 4 CPU cores, and 20GB disk space to the Minikube VM:
 ```bash
-minikube start --cpus=4 --memory=16000
+minikube start --cpus=4 --memory=12000
 ```
 * Check that Minikube is running:
 ```bash
@@ -33,7 +33,7 @@ minikube start --vm-driver="hyperv" --cpus=4 --memory=12000 --hyperv-virtual-swi
 This downloads a Linux ISO and installs it in your Hyper V Manager. You should see a _minikube_ VM, after it's installed. It also installs all the required software in that VM, to simulate a Kubernetes cluster.  
 You may need to add the ```--extra-config=kubelet.ImagePullProgressDeadline=30m0s``` parameter to your start command, as the docker images are rather big.
 
-**Note:** Although 16GB is the required minimum memory setting, keep in mind that 12GB is lower than the required minimum, and may need to be adapted for your environment.
+**Note:** You may need to adapt the required RAM requirement to your environment, as 12GB may not be enough for any use case.
 
 #### Initializing Helm
 
