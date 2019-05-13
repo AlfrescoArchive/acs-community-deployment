@@ -64,7 +64,7 @@ Error: UPGRADE FAILED: no Ingress with the name "nosy-tapir-alfresco-search-solr
 Then, simply delete that resource.  Below is an example:
 ```bash
 kubectl delete secret nosy-tapir-alfresco-search-solr --namespace=$DESIREDNAMESPACE
-(or) <!--[ do we need the line above? -->]
+(or)
 kubectl delete ingress nosy-tapir-alfresco-search-solr --namespace=$DESIREDNAMESPACE
 ```
 
