@@ -11,6 +11,7 @@ metadata:
 data:
   {{ $alfhost := tpl (.Values.externalHost | default (printf "%s-share" (include "content-services.shortname" .))) $ }}
   {{ $alfprotocol := tpl (.Values.externalProtocol | default "http") $ }}
+  {{ $alfport := tpl (.Values.externalPort | default "80" | toString ) $ }}
   # The CATALINA_OPTS defined in the values.yaml file for the "share" are set here using proper quotes
   {{- if .Values.share.environment }}
   {{- range $key, $val := .Values.share.environment }}
@@ -21,3 +22,4 @@ data:
   REPO_PORT: "{{ .Values.repository.service.externalPort }}"
   CSRF_FILTER_REFERER: "{{ $alfprotocol }}://{{ $alfhost }}/.*"
   CSRF_FILTER_ORIGIN: "{{ $alfprotocol }}://{{ $alfhost }}"
+  JAVA_OPTS: "-Dalfresco.proxy={{ $alfprotocol }}://{{ $alfhost }}:{{ $alfport }}"

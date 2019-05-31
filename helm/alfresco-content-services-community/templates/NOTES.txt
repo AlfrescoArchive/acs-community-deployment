@@ -1,12 +1,14 @@
 
 {{ if .Values.externalHost }}
-
+{{ $alfhost := tpl .Values.externalHost $ }}
+{{ $alfprotocol := tpl (.Values.externalProtocol | default "http") $ }}
+{{ $alfport := tpl (.Values.externalPort | default .Values.repository.service.externalPort | toString ) $ }}
 You can access all components of Alfresco Content Services Community using the same root address, but different paths as follows:
 
-  Content: {{ .Values.externalProtocol | default "http" }}://{{ .Values.externalHost }}:{{ .Values.externalPort | default .Values.repository.service.externalPort }}/alfresco
-  Share: {{ .Values.externalProtocol | default "http" }}://{{ .Values.externalHost }}:{{ .Values.externalPort | default .Values.repository.service.externalPort }}/share
-  Api-Explorer: {{ .Values.externalProtocol | default "http" }}://{{ .Values.externalHost }}:{{ .Values.externalPort | default .Values.repository.service.externalPort }}/api-explorer
-{{ if index .Values "alfresco-search" "ingress" "enabled" }}  Solr: {{ .Values.externalProtocol | default "http" }}://{{ .Values.externalHost }}:{{ .Values.externalPort | default .Values.repository.service.externalPort }}/solr {{ end }}
+  Content: {{ $alfprotocol }}://{{ $alfhost }}:{{ $alfport }}/alfresco
+  Share: {{ $alfprotocol }}://{{ $alfhost }}:{{ $alfport }}/share
+  Api-Explorer: {{ $alfprotocol }}://{{ $alfhost }}:{{ $alfport }}/api-explorer
+{{ if index .Values "alfresco-search" "ingress" "enabled" }}  Solr: {{ $alfprotocol }}://{{ $alfhost }}:{{ $alfport }}/solr {{ end }}
 {{ else }}
 If you have a specific DNS address for the cluster please run the following commands to get the application paths and configure ACS:
 
