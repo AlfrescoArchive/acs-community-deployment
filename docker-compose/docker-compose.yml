@@ -23,26 +23,31 @@ services:
                 -Dsolr.secureComms=none
                 -Dsolr.base.url=/solr
                 -Dindex.subsystem.name=solr6
-                -Dshare.host=localhost
-                -Dalfresco.port=8082
-                -Daos.baseUrlOverwrite=http://localhost:8082/alfresco/aos
+                -Dshare.host=127.0.0.1
+                -Dshare.port=8080
+                -Dalfresco.host=localhost
+                -Dalfresco.port=8080
+                -Daos.baseUrlOverwrite=http://localhost:8080/alfresco/aos
                 -Dmessaging.broker.url=\"failover:(nio://activemq:61616)?timeout=3000&jms.useCompression=true\"
                 -Ddeployment.method=DOCKER_COMPOSE
                 -Dcsrf.filter.enabled=false
                 -Xms1g -Xmx1g
                 "
-        ports:
-            - 8082:8080 #Browser port
 
     share:
         image: alfresco/alfresco-share:6.1.0-RC3
         mem_limit: 1g
         environment:
-            - REPO_HOST=alfresco
-            - REPO_PORT=8080
-            - "CATALINA_OPTS= -Xms500m -Xmx500m"
-        ports:
-            - 8080:8080
+            REPO_HOST: "alfresco"
+            REPO_PORT: "8080"
+            JAVA_OPTS: "
+                -Xms500m
+                -Xmx500m
+                -Dalfresco.host=localhost
+                -Dalfresco.port=8080
+                -Dalfresco.context=alfresco
+                -Dalfresco.protocol=http
+                "
 
     postgres:
         image: postgres:10.1
@@ -79,3 +84,14 @@ services:
             - 5672:5672 # AMQP
             - 61616:61616 # OpenWire
             - 61613:61613 # STOMP
+            
+    proxy:
+        image: alfresco/acs-community-ngnix:1.0.0
+        mem_limit: 128m
+        depends_on:
+            - alfresco
+        ports:
+            - 8080:8080
+        links:
+            - alfresco
+            - share     
