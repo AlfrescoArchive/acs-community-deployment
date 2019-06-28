@@ -1,0 +1,21 @@
+# Defines the properties required by the alfresco-transform-misc container
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "content-services.shortname" . }}-transform-misc-configmap
+  labels:
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    component: transformers
+data:
+  # The JAVA_OPTS defined in the values.yaml file for "transform-misc" are set here using proper quotes
+  {{- if .Values.transformmisc.environment }}
+  {{- range $key, $val := .Values.transformmisc.environment }}
+  {{ $key }}: {{ $val | quote }}
+  {{- end }}
+  {{- end }}
+  livenessPercent: "{{ .Values.transformmisc.livenessProbe.livenessPercent }}"
+  livenessTransformPeriodSeconds: "{{ .Values.transformmisc.livenessProbe.livenessTransformPeriodSeconds }}"
+  maxTransforms: "{{ .Values.transformmisc.livenessProbe.maxTransforms }}"
+  maxTransformSeconds: "{{ .Values.transformmisc.livenessProbe.maxTransformSeconds }}"
