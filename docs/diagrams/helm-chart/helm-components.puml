@@ -1,0 +1,54 @@
+@startuml
+
+Title: ACS Helm Deployment Overview
+
+skinparam componentStyle uml2
+skinparam linetype ortho
+skinparam rectangle {
+    BorderStyle dashed
+    FontSize 15
+    FontStyle none
+}
+
+actor Client
+
+node "nginx-ingress namespace" {
+    component "NGINX ingress-controller" as nginx #lightgrey
+}
+
+node "ACS namespace" {
+    component "Alfresco Content Services" as acs #lightgrey
+    component "Alfresco Search Services" as ass #lightgrey
+    component "Alfresco Share" as share #lightgrey
+    database "Volume Claim" as vc
+    component "ActiveMQ" as amq #lightgrey
+    component "Alfresco PDF Renderer" as pdfr #lightgrey
+    component "LibreOffice" as libr #lightgrey
+    component "ImageMagick" as img #lightgrey
+    component "Tika" as tika #lightgrey
+    component "TransformMisc" as misc #lightgrey
+}
+
+database "Database" as db
+
+Client --> nginx
+
+nginx --> acs
+nginx --> share
+
+acs --> vc
+ass --> vc
+
+ass <--> acs
+acs --> db
+acs --> pdfr
+acs --> libr
+acs --> img
+acs --> tika
+acs --> misc
+acs <--> amq
+share --> acs
+
+center footer Copyright 2019 Alfresco Software Inc
+
+@enduml
