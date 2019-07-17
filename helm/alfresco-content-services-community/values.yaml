@@ -72,7 +72,7 @@ pdfrenderer:
   replicaCount: 1
   image:
     repository: alfresco/alfresco-pdf-renderer
-    tag: "2.1.0-EA3"
+    tag: "2.1.0-EA4"
     pullPolicy: Always
     internalPort: 8090
   service:
@@ -105,7 +105,7 @@ imagemagick:
   replicaCount: 1
   image:
     repository: alfresco/alfresco-imagemagick
-    tag: "2.1.0-EA3"
+    tag: "2.1.0-EA4"
     pullPolicy: Always
     internalPort: 8090
   service:
@@ -138,7 +138,7 @@ libreoffice:
   replicaCount: 1
   image:
     repository: alfresco/alfresco-libreoffice
-    tag: "2.1.0-EA3"
+    tag: "2.1.0-EA4"
     pullPolicy: Always
     internalPort: 8090
   service:
@@ -171,7 +171,7 @@ tika:
   replicaCount: 1
   image:
     repository: alfresco/alfresco-tika
-    tag: "2.1.0-EA3"
+    tag: "2.1.0-EA4"
     pullPolicy: Always
     internalPort: 8090
   service:
@@ -204,7 +204,7 @@ transformmisc:
   replicaCount: 1
   image:
     repository: alfresco/alfresco-transform-misc
-    tag: "2.1.0-EA3"
+    tag: "2.1.0-EA4"
     pullPolicy: Always
     internalPort: 8090
   service:
