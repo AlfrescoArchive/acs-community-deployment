@@ -83,6 +83,8 @@ kubectl get service singed-chipmunk-nginx-ingress-controller -o jsonpath={.spec.
 # This will print a port like: 30917
 ```
 
+The Alfresco helm chart is designed to work with host names instead of IP addresses (common practice for production systems). You may need to assign the ingress controller IP address to a resolvable name on the host machine for minikube environments. For example, on *nix systems, this can be done by modifying the `/etc/hosts` file and setting `172.31.147.123` to be resolved as `acs-community.local`.
+
 * Setting DNS name in `/etc/hosts` file
 ```bash
 sudo vi /etc/hosts
