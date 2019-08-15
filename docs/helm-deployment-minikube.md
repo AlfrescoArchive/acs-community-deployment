@@ -83,11 +83,21 @@ kubectl get service singed-chipmunk-nginx-ingress-controller -o jsonpath={.spec.
 # This will print a port like: 30917
 ```
 
+The Alfresco helm chart is designed to work with host names instead of IP addresses (common practice for production systems). You may need to assign the ingress controller IP address to a resolvable name on the host machine for minikube environments. For example, on *nix systems, this can be done by modifying the `/etc/hosts` file and setting `172.31.147.123` to be resolved as `acs-community.local`.
+
+* Setting DNS name in `/etc/hosts` file
+```bash
+sudo vi /etc/hosts
+
+# Add setting below
+172.31.147.123    acs-community.local
+```
+
 ### Option 1: Deploying Alfresco Content Services Community from the chart repository
 
 * Run the following command to deploy Alfresco Content Services Community using the `incubator` or `stable` chart (add the corresponding Helm repository as per [this section](#adding-alfresco-incubator-helm-repository)):
 ```bash
-helm install alfresco-incubator/alfresco-content-services-community --set externalProtocol="http" --set externalHost="172.31.147.123" --set externalPort="30917"
+helm install alfresco-incubator/alfresco-content-services-community --set externalProtocol="http" --set externalHost="acs-community.local" --set externalPort="30917"
 ```
 
 ### Option 2: Deploying Alfresco Content Services Community from the source code
@@ -109,16 +119,16 @@ cd ..
 
 * Run the following command to deploy Alfresco Content Services Community:
 ```bash
-helm install alfresco-content-services-community --set externalProtocol="http" --set externalHost="172.31.147.123" --set externalPort="30917"
+helm install alfresco-content-services-community --set externalProtocol="http" --set externalHost="acs-community.local" --set externalPort="30917"
 ```
 
 ## Checking your deployment
 
 After installing Alfresco Content Services Community, the following URLs are displayed in the terminal:
 ```
-  Content: http://172.31.147.123:30917/alfresco
-  Share: http://172.31.147.123:30917/share
-  Solr: http://172.31.147.123:30917/solr
+  Content: http://acs-community.local:30917/alfresco
+  Share: http://acs-community.local:30917/share
+  Solr: http://acs-community.local:30917/solr
 ```
 You'll need to wait for some time for the deployment to start up. Use the Minikube dashboard to track the state of the deployment.
 
