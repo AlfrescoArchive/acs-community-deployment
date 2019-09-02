@@ -418,12 +418,10 @@ helm install alfresco-incubator/alfresco-content-services-community \
 --set externalHost="$EXTERNALHOST" \
 --set externalPort="443" \
 --set repository.adminPassword="$ALF_ADMIN_PWD" \
---set alfresco-infrastructure.persistence.efs.enabled=true \
---set alfresco-infrastructure.persistence.efs.dns="$EFS_SERVER" \
+--set alfresco-infrastructure.persistence.storageClass.enabled=true \
+--set alfresco-infrastructure.persistence.storageClass.name="nfs-client" \
 --set alfresco-search.resources.requests.memory="2500Mi",alfresco-search.resources.limits.memory="2500Mi" \
 --set alfresco-search.environment.SOLR_JAVA_MEM="-Xms2000M -Xmx2000M" \
---set persistence.repository.data.subPath="$DESIREDNAMESPACE/alfresco-content-services-community/repository-data" \
---set persistence.solr.data.subPath="$DESIREDNAMESPACE/alfresco-content-services-community/solr-data" \
 --set postgresql.enabled=false \
 --set database.external=true \
 --set database.driver="org.postgresql.Driver" \
