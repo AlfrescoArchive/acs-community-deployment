@@ -292,6 +292,24 @@ export EFS_SERVER=$EFS_FS_ID.efs.$AWS_DEFAULT_REGION.amazonaws.com
 export EFS_SERVER=<EFS_ID>.efs.<AWS-REGION>.amazonaws.com
 ```
 
+### Install the NFS client provisioner
+
+The NFS client provisioner is an automatic provisioner for Kubernetes that uses your already configured NFS server, automatically creating Persistent Volumes. Each volume created by the provisioner will be mounted in a unique folder, specifically created on the NFS server for each Persistent Volume Claim. 
+For more details check the official docs on [dynamic volume provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/)
+
+The command to install the NFS provisioner is the following:
+```bash
+helm install stable/nfs-client-provisioner \
+--name alfresco-nfs-provisioner \
+--set nfs.server="$EFS_SERVER" \
+--set nfs.path="/" \
+--set storageClass.name="nfs-client" \  
+--set storageClass.archiveOnDelete=false \
+```
+The command line interface might try to resolve the *nfs.path="/"* to a path from the local file system. In that case use escaping, like *nfs.path="\/"*.
+
+More info about the chart configuration can be found here: https://github.com/helm/charts/tree/master/stable/nfs-client-provisioner#configuration
+
 ### Creating a Docker registry pull secret
 
 If you need to use private Docker images from Quay.io, you need credentials to be able to pull those images from Quay.io. <!--x-->
@@ -368,14 +386,12 @@ helm install alfresco-incubator/alfresco-content-services-community \
 --set externalHost="$EXTERNALHOST" \
 --set externalPort="443" \
 --set repository.adminPassword="$ALF_ADMIN_PWD" \
---set alfresco-infrastructure.persistence.efs.enabled=true \
---set alfresco-infrastructure.persistence.efs.dns="$EFS_SERVER" \
+--set alfresco-infrastructure.persistence.storageClass.enabled=true \
+--set alfresco-infrastructure.persistence.storageClass.name="nfs-client" \
+--set alfresco-infrastructure.alfresco-infrastructure.nginx-ingress.enabled=false \
 --set alfresco-search.resources.requests.memory="2500Mi",alfresco-search.resources.limits.memory="2500Mi" \
 --set alfresco-search.environment.SOLR_JAVA_MEM="-Xms2000M -Xmx2000M" \
---set persistence.repository.data.subPath="$DESIREDNAMESPACE/alfresco-content-services-community/repository-data" \
---set persistence.solr.data.subPath="$DESIREDNAMESPACE/alfresco-content-services-community/solr-data" \
 --set postgresql.postgresPassword="$ALF_DB_PWD" \
---set postgresql.persistence.subPath="$DESIREDNAMESPACE/alfresco-content-services-community/database-data" \
 --namespace=$DESIREDNAMESPACE
 ```
 
@@ -402,12 +418,10 @@ helm install alfresco-incubator/alfresco-content-services-community \
 --set externalHost="$EXTERNALHOST" \
 --set externalPort="443" \
 --set repository.adminPassword="$ALF_ADMIN_PWD" \
---set alfresco-infrastructure.persistence.efs.enabled=true \
---set alfresco-infrastructure.persistence.efs.dns="$EFS_SERVER" \
+--set alfresco-infrastructure.persistence.storageClass.enabled=true \
+--set alfresco-infrastructure.persistence.storageClass.name="nfs-client" \
 --set alfresco-search.resources.requests.memory="2500Mi",alfresco-search.resources.limits.memory="2500Mi" \
 --set alfresco-search.environment.SOLR_JAVA_MEM="-Xms2000M -Xmx2000M" \
---set persistence.repository.data.subPath="$DESIREDNAMESPACE/alfresco-content-services-community/repository-data" \
---set persistence.solr.data.subPath="$DESIREDNAMESPACE/alfresco-content-services-community/solr-data" \
 --set postgresql.enabled=false \
 --set database.external=true \
 --set database.driver="org.postgresql.Driver" \
@@ -445,14 +459,11 @@ helm install alfresco-incubator/alfresco-content-services-community \
 --set externalHost="$EXTERNALHOST" \
 --set externalPort="443" \
 --set repository.adminPassword="$ALF_ADMIN_PWD" \
---set alfresco-infrastructure.persistence.efs.enabled=true \
---set alfresco-infrastructure.persistence.efs.dns="$EFS_SERVER" \
+--set alfresco-infrastructure.persistence.storageClass.enabled=true \
+--set alfresco-infrastructure.persistence.storageClass.name="nfs-client" \
 --set alfresco-search.resources.requests.memory="2500Mi",alfresco-search.resources.limits.memory="2500Mi" \
 --set alfresco-search.environment.SOLR_JAVA_MEM="-Xms2000M -Xmx2000M" \
---set persistence.repository.data.subPath="$DESIREDNAMESPACE/alfresco-content-services-community/repository-data" \
---set persistence.solr.data.subPath="$DESIREDNAMESPACE/alfresco-content-services-community/solr-data" \
 --set postgresql.postgresPassword="$ALF_DB_PWD" \
---set postgresql.persistence.subPath="$DESIREDNAMESPACE/alfresco-content-services-community/database-data" \
 --set messageBroker.url="$MESSAGE_BROKER_URL" \
 --set messageBroker.user="$MESSAGE_BROKER_USER" \
 --set messageBroker.password="$MESSAGE_BROKER_PASSWORD" \
