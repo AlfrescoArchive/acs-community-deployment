@@ -50,7 +50,7 @@ services:
                 "
 
     alfresco-pdf-renderer:
-        image: alfresco/alfresco-pdf-renderer:2.1.0-EA4
+        image: alfresco/alfresco-pdf-renderer:2.1.0-RC1
         mem_limit: 1g
         environment:
             JAVA_OPTS: " -Xms256m -Xmx512m"
@@ -58,7 +58,7 @@ services:
             - 8090:8090
 
     imagemagick:
-        image: alfresco/alfresco-imagemagick:2.1.0-EA4
+        image: alfresco/alfresco-imagemagick:2.1.0-RC1
         mem_limit: 1g
         environment:
             JAVA_OPTS: " -Xms256m -Xmx512m"
@@ -66,7 +66,7 @@ services:
             - 8091:8090
 
     libreoffice:
-        image: alfresco/alfresco-libreoffice:2.1.0-EA4
+        image: alfresco/alfresco-libreoffice:2.1.0-RC1
         mem_limit: 1g
         environment:
             JAVA_OPTS: " -Xms256m -Xmx512m"
@@ -74,7 +74,7 @@ services:
             - 8092:8090
 
     tika:
-        image: alfresco/alfresco-tika:2.1.0-EA4
+        image: alfresco/alfresco-tika:2.1.0-RC1
         mem_limit: 1g
         environment:
             JAVA_OPTS: " -Xms256m -Xmx512m"
@@ -82,7 +82,7 @@ services:
             - 8093:8090
 
     transform-misc:
-        image: alfresco/alfresco-transform-misc:2.1.0-EA4
+        image: alfresco/alfresco-transform-misc:2.1.0-RC1
         mem_limit: 1g
         environment:
             JAVA_OPTS: " -Xms256m -Xmx512m"
