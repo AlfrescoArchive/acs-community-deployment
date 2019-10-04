@@ -28,20 +28,8 @@ repository:
       -Dsolr.secureComms=none
       -Dindex.subsystem.name=solr6
       -Ddeployment.method=HELM_CHART
-
       -Dlocal.transform.service.enabled=true
-      -DlocalTransform.pdfrenderer.url=http://alfresco-pdf-renderer:8090/
-      -DlocalTransform.imagemagick.url=http://imagemagick:8090/
-      -DlocalTransform.libreoffice.url=http://libreoffice:8090/
-      -DlocalTransform.tika.url=http://tika:8090/
-      -DlocalTransform.misc.url=http://transformmisc:8090/
-
       -Dlegacy.transform.service.enabled=true
-      -Dalfresco-pdf-renderer.url=http://alfresco-pdf-renderer:8090/
-      -Djodconverter.url=http://libreoffice:8090/
-      -Dimg.url=http://imagemagick:8090/
-      -Dtika.url=http://tika:8090/
-      -Dtransform.misc.url=http://transformmisc:8090/
 
       -Xms2000M -Xmx2000M"
   resources:
