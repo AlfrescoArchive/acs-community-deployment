@@ -357,7 +357,7 @@ kubectl create -f secrets.yaml --namespace $DESIREDNAMESPACE
 secret "quay-registry-secret" created
 ```
 
-**Note:** When installing the ACS Helm chart and using private Docker images from Quay.io, make sure you add the variable ```--set registryPullSecrets=quay-registry-secret``` in the `helm install` command.
+**Note:** When installing the ACS Helm chart and using private Docker images from Quay.io, make sure you add the variable ```--set global.alfrescoRegistryPullSecrets=quay-registry-secret``` in the `helm install` command.
 
 
 ### Deploying Alfresco Content Services Community
