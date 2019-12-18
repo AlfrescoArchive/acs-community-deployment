@@ -6,7 +6,7 @@
 #       is really required from the alfresco-infrastructure to start up the Alfresco Content Services product
 dependencies:
 - name: postgresql
-  version: 0.9.3
+  version: 7.7.3
   repository: https://kubernetes-charts.storage.googleapis.com/
   condition: postgresql.enabled
 - name: alfresco-search
