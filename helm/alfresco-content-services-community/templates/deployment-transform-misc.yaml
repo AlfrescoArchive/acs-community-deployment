@@ -59,6 +59,7 @@ spec:
           ports:
             - containerPort: {{ .Values.transformmisc.image.internalPort }}
           resources:
+{{ toYaml .Values.transformmisc.resources | indent 12 }}
           readinessProbe:
             httpGet:
               path: /ready
@@ -74,4 +75,3 @@ spec:
             periodSeconds: {{ .Values.transformmisc.livenessProbe.periodSeconds }}
             failureThreshold: 1
             timeoutSeconds: {{ .Values.transformmisc.livenessProbe.timeoutSeconds }}
-{{ toYaml .Values.transformmisc.resources | indent 12 }}

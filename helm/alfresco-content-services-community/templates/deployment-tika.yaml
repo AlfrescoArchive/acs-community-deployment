@@ -59,6 +59,7 @@ spec:
           ports:
             - containerPort: {{ .Values.tika.image.internalPort }}
           resources:
+{{ toYaml .Values.tika.resources | indent 12 }}
           readinessProbe:
             httpGet:
               path: /ready
@@ -74,4 +75,3 @@ spec:
             periodSeconds: {{ .Values.tika.livenessProbe.periodSeconds }}
             failureThreshold: 1
             timeoutSeconds: {{ .Values.tika.livenessProbe.timeoutSeconds }}
-{{ toYaml .Values.tika.resources | indent 12 }}
