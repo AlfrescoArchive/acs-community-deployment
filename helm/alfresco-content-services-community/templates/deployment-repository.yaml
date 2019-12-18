@@ -1,5 +1,5 @@
 # Defines the deployment for the alfresco content repository app
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "content-services.shortname" . }}-repository
@@ -11,6 +11,9 @@ metadata:
     component: repository
 spec:
   replicas: {{ .Values.repository.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "content-services.shortname" . }}-repository
   template:
     metadata:
       labels:
@@ -28,7 +31,7 @@ spec:
           image: "{{ .Values.repository.image.repository }}:{{ .Values.repository.image.tag }}"
           imagePullPolicy: {{ .Values.repository.image.pullPolicy }}
           envFrom:
-          - secretRef: 
+          - secretRef:
               name: {{ template "content-services.shortname" . }}-dbsecret
           - configMapRef:
               # config map to use, defined in config-repository.yaml
