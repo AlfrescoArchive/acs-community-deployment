@@ -20,12 +20,12 @@ To deploy Alfresco Content Services Community using _docker-compose_, you'll nee
 2. Navigate to the folder where the _docker-compose.yml_ file is located.
 3. Run ```docker-compose up```
 4. Open the following URLs in your browser to check that everything starts up:
-* Administration and REST APIs: [http://<machine_ip>:8080/alfresco](http://localhost:8082/alfresco)
+* Administration and REST APIs: [http://<machine_ip>:8080/alfresco](http://localhost:8080/alfresco)
 * Share: [http://<machine_ip>:8080/share](http://localhost:8080/share)
 * Search administration: [http://<machine_ip>:8083/solr](http://localhost:8083/solr)
 
 **Note:**
-* Make sure that exposed ports are open on your host. Check the _docker-compose.yml_ file to determine the exposed ports - refer to the ```host:container``` port definitions. You'll see they include 5432, 8080, 8082, 8083 and others.
+* Make sure that exposed ports are open on your host. Check the _docker-compose.yml_ file to determine the exposed ports - refer to the ```host:container``` port definitions. You'll see they include 5432, 8080, 8083 and others.
 * If Docker is running on your local machine, the IP address will be just _localhost_.
 * If you're using the [Docker Toolbox](https://docs.docker.com/toolbox/toolbox_install_windows), run the following command to find the IP address:
 ```bash
