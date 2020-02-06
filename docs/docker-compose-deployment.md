@@ -20,7 +20,7 @@ To deploy Alfresco Content Services Community using _docker-compose_, you'll nee
 2. Navigate to the folder where the _docker-compose.yml_ file is located.
 3. Run ```docker-compose up```
 4. Open the following URLs in your browser to check that everything starts up:
-* Administration and REST APIs: [http://<machine_ip>:8082/alfresco](http://localhost:8082/alfresco)
+* Administration and REST APIs: [http://<machine_ip>:8080/alfresco](http://localhost:8082/alfresco)
 * Share: [http://<machine_ip>:8080/share](http://localhost:8080/share)
 * Search administration: [http://<machine_ip>:8083/solr](http://localhost:8083/solr)
 
