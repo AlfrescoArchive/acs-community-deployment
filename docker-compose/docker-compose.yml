@@ -12,6 +12,15 @@ services:
     alfresco:
         image: alfresco/alfresco-content-repository-community:6.2.0-ga
         mem_limit: 1500m
+
+        # TODO ATS-707 - review legacy transform urls:
+        #
+        #        -Dalfresco-pdf-renderer.url=
+        #        -Djodconverter.url=
+        #        -Dimg.url=
+        #        -Dtika.url=
+        #        -Dtransform.misc.url=
+
         environment:
             JAVA_OPTS: "
                 -Ddb.driver=org.postgresql.Driver
@@ -32,62 +41,32 @@ services:
                 -Ddeployment.method=DOCKER_COMPOSE
 
                 -Dlocal.transform.service.enabled=true
-                -DlocalTransform.pdfrenderer.url=http://alfresco-pdf-renderer:8090/
-                -DlocalTransform.imagemagick.url=http://imagemagick:8090/
-                -DlocalTransform.libreoffice.url=http://libreoffice:8090/
-                -DlocalTransform.tika.url=http://tika:8090/
-                -DlocalTransform.misc.url=http://transform-misc:8090/
+                -DlocalTransform.transform-aio.url=http://alfresco-transform-aio:8090/
+
+                -DlocalTransform.pdfrenderer.url=
+                -DlocalTransform.imagemagick.url=
+                -DlocalTransform.libreoffice.url=
+                -DlocalTransform.tika.url=
+                -DlocalTransform.misc.url=
 
                 -Dlegacy.transform.service.enabled=true
-                -Dalfresco-pdf-renderer.url=http://alfresco-pdf-renderer:8090/
-                -Djodconverter.url=http://libreoffice:8090/
-                -Dimg.url=http://imagemagick:8090/
-                -Dtika.url=http://tika:8090/
-                -Dtransform.misc.url=http://transform-misc:8090/
+                -Dalfresco-pdf-renderer.url=
+                -Djodconverter.url=
+                -Dimg.url=
+                -Dtika.url=
+                -Dtransform.misc.url=
 
                 -Dcsrf.filter.enabled=false
                 -Xms1500m -Xmx1500m
                 "
 
-    alfresco-pdf-renderer:
-        image: alfresco/alfresco-pdf-renderer:2.1.1
+    alfresco-transform-aio:
+        image: alfresco/alfresco-transform-aio:latest
         mem_limit: 1g
         environment:
-            JAVA_OPTS: " -Xms256m -Xmx512m"
+            JAVA_OPTS: " -Xms512m -Xmx1024m"
         ports:
             - 8090:8090
-
-    imagemagick:
-        image: alfresco/alfresco-imagemagick:2.1.1
-        mem_limit: 1g
-        environment:
-            JAVA_OPTS: " -Xms256m -Xmx512m"
-        ports:
-            - 8091:8090
-
-    libreoffice:
-        image: alfresco/alfresco-libreoffice:2.1.1
-        mem_limit: 1g
-        environment:
-            JAVA_OPTS: " -Xms256m -Xmx512m"
-        ports:
-            - 8092:8090
-
-    tika:
-        image: alfresco/alfresco-tika:2.1.1
-        mem_limit: 1g
-        environment:
-            JAVA_OPTS: " -Xms256m -Xmx512m"
-        ports:
-            - 8093:8090
-
-    transform-misc:
-        image: alfresco/alfresco-transform-misc:2.1.1
-        mem_limit: 1g
-        environment:
-            JAVA_OPTS: " -Xms256m -Xmx512m"
-        ports:
-            - 8094:8090
 
     share:
         image: alfresco/alfresco-share:6.2.0
