@@ -13,13 +13,17 @@ services:
         image: alfresco/alfresco-content-repository-community:6.2.0-ga
         mem_limit: 1500m
 
-        # TODO ATS-707 - review legacy transform urls:
+        # TODO ATS-707 - review legacy config
         #
+        #   Could each legacy url point to same Core All-In-One T-Engine ?
+        #1
         #        -Dalfresco-pdf-renderer.url=
         #        -Djodconverter.url=
         #        -Dimg.url=
         #        -Dtika.url=
         #        -Dtransform.misc.url=
+        #
+        #   Or, can we remove legacy completely (see separate branch & REPO-4710 comments) ?
 
         environment:
             JAVA_OPTS: "
@@ -49,7 +53,7 @@ services:
                 -DlocalTransform.tika.url=
                 -DlocalTransform.misc.url=
 
-                -Dlegacy.transform.service.enabled=true
+                -Dlegacy.transform.service.enabled=false
                 -Dalfresco-pdf-renderer.url=
                 -Djodconverter.url=
                 -Dimg.url=
@@ -62,9 +66,9 @@ services:
 
     alfresco-transform-aio:
         image: alfresco/alfresco-transform-aio:latest
-        mem_limit: 1g
+        mem_limit: 1536m
         environment:
-            JAVA_OPTS: " -Xms512m -Xmx1024m"
+            JAVA_OPTS: " -Xms512m -Xmx1536m"
         ports:
             - 8090:8090
 
