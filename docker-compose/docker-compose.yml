@@ -31,19 +31,19 @@ services:
                 -Dmessaging.broker.url=\"failover:(nio://activemq:61616)?timeout=3000&jms.useCompression=true\"
                 -Ddeployment.method=DOCKER_COMPOSE
 
-                -DlocalTransform.core-aio.url=http://alfresco-core-aio:8090/
+                -DlocalTransform.core-aio.url=http://transform-core-aio:8090/
 
-                -DlegacyTransform.core-aio.url=http://alfresco-core-aio:8090/
+                -DlegacyTransform.core-aio.url=http://transform-core-aio:8090/
 
                 -Dcsrf.filter.enabled=false
                 -Xms1500m -Xmx1500m
                 "
 
-    alfresco-core-aio:
+    transform-core-aio:
         image: alfresco/alfresco-transform-core-aio:2.2.0-TEST1
         mem_limit: 1g
         environment:
-            JAVA_OPTS: " -Xms256m -Xmx512m"
+            JAVA_OPTS: " -Xms256m -Xmx1536m"
         ports:
             - 8090:8090
 
