@@ -41,11 +41,11 @@ services:
 
     transform-core-aio:
         image: alfresco/alfresco-transform-core-aio:2.2.0-TEST1
-        mem_limit: 1g
+        mem_limit: 1536m
         environment:
             JAVA_OPTS: " -Xms256m -Xmx1536m"
         ports:
-            - 8090:8090
+            - 8097:8090
 
     share:
         image: alfresco/alfresco-share:6.2.0
