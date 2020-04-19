@@ -1,0 +1,21 @@
+# Defines the properties required by the core-aio container
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "content-services.shortname" . }}-core-aio-configmap
+  labels:
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    component: transformers
+data:
+  # The JAVA_OPTS defined in the values.yaml file for the "core-aio" are set here using proper quotes
+  {{- if .Values.core-aio.environment }}
+  {{- range $key, $val := .Values.core-aio.environment }}
+  {{ $key }}: {{ $val | quote }}
+  {{- end }}
+  {{- end }}
+  livenessPercent: "{{ .Values.core-aio.livenessProbe.livenessPercent }}"
+  livenessTransformPeriodSeconds: "{{ .Values.core-aio.livenessProbe.livenessTransformPeriodSeconds }}"
+  maxTransforms: "{{ .Values.core-aio.livenessProbe.maxTransforms }}"
+  maxTransformSeconds: "{{ .Values.core-aio.livenessProbe.maxTransformSeconds }}"
