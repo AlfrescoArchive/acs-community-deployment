@@ -11,7 +11,7 @@ metadata:
     heritage: {{ .Release.Service }}
     component: transformers
 spec:
-  replicas: {{ .Values.core-aio.replicaCount }}
+  replicas: {{ .Values.aio.replicaCount }}
   template:
     metadata:
       labels:
@@ -47,28 +47,28 @@ spec:
               topologyKey: kubernetes.io/hostname
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.core-aio.image.repository }}:{{ .Values.core-aio.image.tag }}"
-          imagePullPolicy: {{ .Values.core-aio.image.pullPolicy }}
+          image: "{{ .Values.aio.image.repository }}:{{ .Values.aio.image.tag }}"
+          imagePullPolicy: {{ .Values.aio.image.pullPolicy }}
           envFrom:
           - configMapRef:
               # config map to use, defined in config-core-aio.yaml
               name: {{ template "content-services.shortname" . }}-core-aio-configmap
           ports:
-            - containerPort: {{ .Values.core-aio.image.internalPort }}
+            - containerPort: {{ .Values.aio.image.internalPort }}
           resources:
           readinessProbe:
             httpGet:
               path: /ready
-              port: {{ .Values.core-aio.image.internalPort }}
-            initialDelaySeconds: {{ .Values.core-aio.readinessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.core-aio.readinessProbe.periodSeconds }}
-            timeoutSeconds: {{ .Values.core-aio.readinessProbe.timeoutSeconds }}
+              port: {{ .Values.aio.image.internalPort }}
+            initialDelaySeconds: {{ .Values.aio.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.aio.readinessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.aio.readinessProbe.timeoutSeconds }}
           livenessProbe:
             httpGet:
               path: /live
-              port: {{ .Values.core-aio.image.internalPort }}
-            initialDelaySeconds: {{ .Values.core-aio.livenessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.core-aio.livenessProbe.periodSeconds }}
+              port: {{ .Values.aio.image.internalPort }}
+            initialDelaySeconds: {{ .Values.aio.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.aio.livenessProbe.periodSeconds }}
             failureThreshold: 1
-            timeoutSeconds: {{ .Values.core-aio.livenessProbe.timeoutSeconds }}
-{{ toYaml .Values.core-aio.resources | indent 12 }}
+            timeoutSeconds: {{ .Values.aio.livenessProbe.timeoutSeconds }}
+{{ toYaml .Values.aio.resources | indent 12 }}

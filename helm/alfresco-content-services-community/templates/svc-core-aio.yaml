@@ -10,11 +10,11 @@ metadata:
     heritage: {{ .Release.Service }}
     component: transformers
 spec:
-  type: {{ .Values.core-aio.service.type }}
+  type: {{ .Values.aio.service.type }}
   ports:
-    - port: {{ .Values.core-aio.service.externalPort }}
-      targetPort: {{ .Values.core-aio.image.internalPort }}
-      name: {{ .Values.core-aio.service.name }}
+    - port: {{ .Values.aio.service.externalPort }}
+      targetPort: {{ .Values.aio.image.internalPort }}
+      name: {{ .Values.aio.service.name }}
   selector:
     app: {{ template "content-services.shortname" . }}-core-aio
     release: {{ .Release.Name }}

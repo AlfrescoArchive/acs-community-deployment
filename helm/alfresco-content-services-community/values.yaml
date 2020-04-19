@@ -1,7 +1,7 @@
 # This is a YAML-formatted file.  Declare variables to be passed into your templates.
 
 # ACS will be created in a k8s cluster with a minimum of 16GB memory to split among below nodes:
-# 1 x repository, 1 x share, 1 x transformer (core-aio) and 1 x postgresql
+# 1 x repository, 1 x share, 1 x transformer (aio) and 1 x postgresql
 
 # Limit container memory and assign X percentage to JVM.  There are couple of ways to allocate JVM Memory for ACS Containers
 # For example: 'JAVA_OPTS: "$JAVA_OPTS -XX:+PrintFlagsFinal -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"'
@@ -54,17 +54,17 @@ apiexplorer:
   ingress:
     path: /api-explorer
 
-# Declares the alfresco-core-aio service used by the content repository
+# Declares the alfresco-aio service used by the content repository
 # to transform common core files
-core-aio:
+aio:
   replicaCount: 1
   image:
-    repository: alfresco/alfresco-core-aio
+    repository: alfresco/alfresco-aio
     tag: "2.2.0-A3"
     pullPolicy: Always
     internalPort: 8090
   service:
-    name: core-aio
+    name: aio
     type: ClusterIP
     externalPort: 80
   resources:

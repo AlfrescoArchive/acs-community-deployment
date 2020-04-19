@@ -10,12 +10,12 @@ metadata:
     component: transformers
 data:
   # The JAVA_OPTS defined in the values.yaml file for the "core-aio" are set here using proper quotes
-  {{- if .Values.core-aio.environment }}
-  {{- range $key, $val := .Values.core-aio.environment }}
+  {{- if .Values.aio.environment }}
+  {{- range $key, $val := .Values.aio.environment }}
   {{ $key }}: {{ $val | quote }}
   {{- end }}
   {{- end }}
-  livenessPercent: "{{ .Values.core-aio.livenessProbe.livenessPercent }}"
-  livenessTransformPeriodSeconds: "{{ .Values.core-aio.livenessProbe.livenessTransformPeriodSeconds }}"
-  maxTransforms: "{{ .Values.core-aio.livenessProbe.maxTransforms }}"
-  maxTransformSeconds: "{{ .Values.core-aio.livenessProbe.maxTransformSeconds }}"
+  livenessPercent: "{{ .Values.aio.livenessProbe.livenessPercent }}"
+  livenessTransformPeriodSeconds: "{{ .Values.aio.livenessProbe.livenessTransformPeriodSeconds }}"
+  maxTransforms: "{{ .Values.aio.livenessProbe.maxTransforms }}"
+  maxTransformSeconds: "{{ .Values.aio.livenessProbe.maxTransformSeconds }}"
