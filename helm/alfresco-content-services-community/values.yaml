@@ -13,7 +13,7 @@ repository:
   replicaCount: 1
   image:
     repository: alfresco/alfresco-content-repository-community
-    tag: "6.2.0-ga"
+    tag: "6.2.1-A2"
     pullPolicy: Always
     internalPort: 8080
   service:
@@ -28,8 +28,6 @@ repository:
       -Dsolr.secureComms=none
       -Dindex.subsystem.name=solr6
       -Ddeployment.method=HELM_CHART
-      -Dlocal.transform.service.enabled=true
-      -Dlegacy.transform.service.enabled=true
 
       -Xms2000M -Xmx2000M"
   resources:
