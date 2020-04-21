@@ -56,7 +56,7 @@ apiexplorer:
 aio:
   replicaCount: 1
   image:
-    repository: alfresco/alfresco-aio
+    repository: alfresco/alfresco-transform-core-aio
     tag: "2.2.0-A4"
     pullPolicy: Always
     internalPort: 8090
