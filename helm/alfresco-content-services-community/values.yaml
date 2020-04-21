@@ -60,7 +60,7 @@ aio:
   replicaCount: 1
   image:
     repository: alfresco/alfresco-aio
-    tag: "2.2.0-A3"
+    tag: "2.2.0-A4"
     pullPolicy: Always
     internalPort: 8090
   service:
