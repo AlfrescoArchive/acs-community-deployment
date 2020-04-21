@@ -52,8 +52,7 @@ apiexplorer:
   ingress:
     path: /api-explorer
 
-# Declares the alfresco-aio service used by the content repository
-# to transform common core files
+# Declares the aio service used by the content repository to transform common core files
 aio:
   replicaCount: 1
   image:

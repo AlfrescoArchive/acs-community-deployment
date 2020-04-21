@@ -1,11 +1,11 @@
-# Defines the deployment for the core-aio transformer app
+# Defines the deployment for the aio transformer app
 # Details: https://git.alfresco.com/Repository/alfresco-docker-transformers
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "content-services.shortname" . }}-core-aio
+  name: {{ template "content-services.shortname" . }}-aio
   labels:
-    app: {{ template "content-services.shortname" . }}-core-aio
+    app: {{ template "content-services.shortname" . }}-aio
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -15,7 +15,7 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ template "content-services.shortname" . }}-core-aio
+        app: {{ template "content-services.shortname" . }}-aio
         release: {{ .Release.Name }}
         component: transformers
     spec:
@@ -34,7 +34,7 @@ spec:
                 - key: app
                   operator: In
                   values:
-                  - {{ template "content-services.shortname" . }}-core-aio
+                  - {{ template "content-services.shortname" . }}-aio
               topologyKey: failure-domain.beta.kubernetes.io/zone
           - weight: 5
             podAffinityTerm:
@@ -43,7 +43,7 @@ spec:
                 - key: app
                   operator: In
                   values:
-                  - {{ template "content-services.shortname" . }}-core-aio
+                  - {{ template "content-services.shortname" . }}-aio
               topologyKey: kubernetes.io/hostname
       containers:
         - name: {{ .Chart.Name }}
@@ -51,8 +51,8 @@ spec:
           imagePullPolicy: {{ .Values.aio.image.pullPolicy }}
           envFrom:
           - configMapRef:
-              # config map to use, defined in config-core-aio.yaml
-              name: {{ template "content-services.shortname" . }}-core-aio-configmap
+              # config map to use, defined in config-aio.yaml
+              name: {{ template "content-services.shortname" . }}-aio-configmap
           ports:
             - containerPort: {{ .Values.aio.image.internalPort }}
           resources:

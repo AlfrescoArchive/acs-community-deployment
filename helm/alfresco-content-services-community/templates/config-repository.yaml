@@ -39,12 +39,12 @@ data:
       -Dsolr.host={{ template "alfresco-search.host" . }}
       -Dsolr.port={{ template "alfresco-search.port" . }}
       -Dmessaging.broker.url=failover:(nio://{{ .Release.Name }}-activemq-broker:61616)?timeout=3000&jms.useCompression=true
-      -DlocalTransform.core-aio.url=http://{{ template "content-services.shortname" . }}-core-aio
-      -Dalfresco-pdf-renderer.url=http://{{ template "content-services.shortname" . }}-core-aio
-      -Dimg.url=http://{{ template "content-services.shortname" . }}-core-aio
-      -Djodconverter.url=http://{{ template "content-services.shortname" . }}-core-aio
-      -Dtika.url=http://{{ template "content-services.shortname" . }}-core-aio
-      -Dtransform.misc.url=http://{{ template "content-services.shortname" . }}-core-aio"
+      -DlocalTransform.aio.url=http://{{ template "content-services.shortname" . }}-aio
+      -Dalfresco-pdf-renderer.url=http://{{ template "content-services.shortname" . }}-aio
+      -Dimg.url=http://{{ template "content-services.shortname" . }}-aio
+      -Djodconverter.url=http://{{ template "content-services.shortname" . }}-aio
+      -Dtika.url=http://{{ template "content-services.shortname" . }}-aio
+      -Dtransform.misc.url=http://{{ template "content-services.shortname" . }}-aio"
   CATALINA_OPTS: " $ALFRESCO_OPTS 
       -Ddb.driver={{ .Values.database.driver | default "org.postgresql.Driver" }}
       {{- if eq .Values.database.external false }}
