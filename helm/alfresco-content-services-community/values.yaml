@@ -13,7 +13,7 @@ repository:
   replicaCount: 1
   image:
     repository: alfresco/alfresco-content-repository-community
-    tag: "6.2.1-A2"
+    tag: "6.2.1-R1"
     pullPolicy: Always
     internalPort: 8080
   service:
@@ -57,7 +57,7 @@ aio:
   replicaCount: 1
   image:
     repository: alfresco/alfresco-transform-core-aio
-    tag: "2.2.0-A4"
+    tag: "2.2.0-A5"
     pullPolicy: Always
     internalPort: 8090
   service:
@@ -90,7 +90,7 @@ share:
   replicaCount: 1
   image:
     repository: alfresco/alfresco-share
-    tag: "6.2.0"
+    tag: "6.2.1-RC1"
     pullPolicy: Always
     internalPort: 8080
   service:
