@@ -146,7 +146,7 @@ alfresco-infrastructure:
 alfresco-search:
   enabled: true
   searchServicesImage:
-    tag: "1.4.2-RC3"
+    tag: "1.4.2"
   repository:
     # The value for "host" is the name of this chart (will be suffixed with -repository by alfresco-search)
     host: alfresco-cs-ce
