@@ -10,7 +10,7 @@ version: "2"
 
 services:
     alfresco:
-        image: alfresco/alfresco-content-repository-community:6.2.1-RC1
+        image: alfresco/alfresco-content-repository-community:6.2.1-A5
         mem_limit: 1500m
         environment:
             JAVA_OPTS: "
@@ -44,7 +44,7 @@ services:
                 "
 
     transform-core-aio:
-        image: alfresco/alfresco-transform-core-aio:2.2.0
+        image: alfresco/alfresco-transform-core-aio:2.2.1
         mem_limit: 1536m
         environment:
             JAVA_OPTS: " -Xms256m -Xmx1536m"
