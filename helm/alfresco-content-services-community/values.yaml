@@ -13,7 +13,7 @@ repository:
   replicaCount: 1
   image:
     repository: alfresco/alfresco-content-repository-community
-    tag: "6.2.1-A5"
+    tag: "6.2.1-A6"
     pullPolicy: Always
     internalPort: 8080
   service:
