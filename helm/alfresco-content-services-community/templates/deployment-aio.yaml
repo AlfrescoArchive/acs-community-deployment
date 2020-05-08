@@ -1,21 +1,21 @@
-# Defines the deployment for the tika transformer app
+# Defines the deployment for the aio transformer app
 # Details: https://git.alfresco.com/Repository/alfresco-docker-transformers
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "content-services.shortname" . }}-tika
+  name: {{ template "content-services.shortname" . }}-aio
   labels:
-    app: {{ template "content-services.shortname" . }}-tika
+    app: {{ template "content-services.shortname" . }}-aio
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
     component: transformers
 spec:
-  replicas: {{ .Values.tika.replicaCount }}
+  replicas: {{ .Values.aio.replicaCount }}
   template:
     metadata:
       labels:
-        app: {{ template "content-services.shortname" . }}-tika
+        app: {{ template "content-services.shortname" . }}-aio
         release: {{ .Release.Name }}
         component: transformers
     spec:
@@ -34,7 +34,7 @@ spec:
                 - key: app
                   operator: In
                   values:
-                  - {{ template "content-services.shortname" . }}-tika
+                  - {{ template "content-services.shortname" . }}-aio
               topologyKey: failure-domain.beta.kubernetes.io/zone
           - weight: 5
             podAffinityTerm:
@@ -43,32 +43,32 @@ spec:
                 - key: app
                   operator: In
                   values:
-                  - {{ template "content-services.shortname" . }}-tika
+                  - {{ template "content-services.shortname" . }}-aio
               topologyKey: kubernetes.io/hostname
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.tika.image.repository }}:{{ .Values.tika.image.tag }}"
-          imagePullPolicy: {{ .Values.tika.image.pullPolicy }}
+          image: "{{ .Values.aio.image.repository }}:{{ .Values.aio.image.tag }}"
+          imagePullPolicy: {{ .Values.aio.image.pullPolicy }}
           envFrom:
           - configMapRef:
-              # config map to use, defined in config-tika.yaml
-              name: {{ template "content-services.shortname" . }}-tika-configmap
+              # config map to use, defined in config-aio.yaml
+              name: {{ template "content-services.shortname" . }}-aio-configmap
           ports:
-            - containerPort: {{ .Values.tika.image.internalPort }}
+            - containerPort: {{ .Values.aio.image.internalPort }}
           resources:
           readinessProbe:
             httpGet:
               path: /ready
-              port: {{ .Values.tika.image.internalPort }}
-            initialDelaySeconds: {{ .Values.tika.readinessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.tika.readinessProbe.periodSeconds }}
-            timeoutSeconds: {{ .Values.tika.readinessProbe.timeoutSeconds }}
+              port: {{ .Values.aio.image.internalPort }}
+            initialDelaySeconds: {{ .Values.aio.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.aio.readinessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.aio.readinessProbe.timeoutSeconds }}
           livenessProbe:
             httpGet:
               path: /live
-              port: {{ .Values.tika.image.internalPort }}
-            initialDelaySeconds: {{ .Values.tika.livenessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.tika.livenessProbe.periodSeconds }}
+              port: {{ .Values.aio.image.internalPort }}
+            initialDelaySeconds: {{ .Values.aio.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.aio.livenessProbe.periodSeconds }}
             failureThreshold: 1
-            timeoutSeconds: {{ .Values.tika.livenessProbe.timeoutSeconds }}
-{{ toYaml .Values.tika.resources | indent 12 }}
+            timeoutSeconds: {{ .Values.aio.livenessProbe.timeoutSeconds }}
+{{ toYaml .Values.aio.resources | indent 12 }}

@@ -1,0 +1,20 @@
+# Defines the service for the aio transformer app
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "content-services.shortname" . }}-aio
+  labels:
+    app: {{ template "content-services.shortname" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    component: transformers
+spec:
+  type: {{ .Values.aio.service.type }}
+  ports:
+    - port: {{ .Values.aio.service.externalPort }}
+      targetPort: {{ .Values.aio.image.internalPort }}
+      name: {{ .Values.aio.service.name }}
+  selector:
+    app: {{ template "content-services.shortname" . }}-aio
+    release: {{ .Release.Name }}

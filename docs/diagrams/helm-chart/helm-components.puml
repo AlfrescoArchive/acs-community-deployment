@@ -22,11 +22,7 @@ node "ACS namespace" {
     component "Alfresco Share" as share #lightgrey
     database "Volume Claim" as vc
     component "ActiveMQ" as amq #lightgrey
-    component "Alfresco PDF Renderer" as pdfr #lightgrey
-    component "LibreOffice" as libr #lightgrey
-    component "ImageMagick" as img #lightgrey
-    component "Tika" as tika #lightgrey
-    component "TransformMisc" as misc #lightgrey
+    component "T Core AIO" as aio #lightgrey
 }
 
 database "Database" as db
@@ -41,11 +37,7 @@ ass --> vc
 
 ass <--> acs
 acs --> db
-acs --> pdfr
-acs --> libr
-acs --> img
-acs --> tika
-acs --> misc
+acs --> aio
 acs <--> amq
 share --> acs
 
