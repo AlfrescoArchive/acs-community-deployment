@@ -44,7 +44,7 @@ services:
                 "
 
     transform-core-aio:
-        image: alfresco/alfresco-transform-core-aio:2.2.1
+        image: alfresco/alfresco-transform-core-aio:2.2.2
         mem_limit: 1536m
         environment:
             JAVA_OPTS: " -Xms256m -Xmx1536m"
@@ -103,7 +103,7 @@ services:
             - 5672:5672 # AMQP
             - 61616:61616 # OpenWire
             - 61613:61613 # STOMP
-            
+
     proxy:
         image: alfresco/acs-community-ngnix:1.0.0
         mem_limit: 128m
@@ -113,4 +113,4 @@ services:
             - 8080:8080
         links:
             - alfresco
-            - share     
+            - share
