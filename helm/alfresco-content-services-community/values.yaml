@@ -161,7 +161,7 @@ networkpolicysetting:
   enabled: true
 
 # Defines properties required by alfresco for connecting to the database
-# Note! : If you set database.external to true you will have to setup the driver, user, password and JdbcUrl 
+# Note! : If you set database.external to true you will have to setup the driver, user, password and JdbcUrl
 # Also make sure that the container has the db driver in /usr/local/tomcat/lib since the current image only has the postgresql driver
 database:
   external: false
@@ -174,11 +174,11 @@ database:
 # Note: the database (tables) information is also saved in the persistent volume claim
 postgresql:
   replicaCount: 1
-  ## If true, install the postgresql chart alongside Alfresco Content Services. 
+  ## If true, install the postgresql chart alongside Alfresco Content Services.
   # Note: Set this to false if you use an external database.
   enabled: true
   nameOverride: postgresql-acs
-  imageTag: "11.4"
+  imageTag: "11.7"
   postgresUser: alfresco
   postgresPassword: alfresco
   postgresDatabase: alfresco
