@@ -57,7 +57,7 @@ aio:
   replicaCount: 1
   image:
     repository: alfresco/alfresco-transform-core-aio
-    tag: "2.3.2"
+    tag: "2.3.3"
     pullPolicy: Always
     internalPort: 8090
   service:
