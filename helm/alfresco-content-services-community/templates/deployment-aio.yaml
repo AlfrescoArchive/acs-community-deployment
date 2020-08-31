@@ -55,7 +55,6 @@ spec:
               name: {{ template "content-services.shortname" . }}-aio-configmap
           ports:
             - containerPort: {{ .Values.aio.image.internalPort }}
-          resources:
           readinessProbe:
             httpGet:
               path: /ready
@@ -71,4 +70,5 @@ spec:
             periodSeconds: {{ .Values.aio.livenessProbe.periodSeconds }}
             failureThreshold: 1
             timeoutSeconds: {{ .Values.aio.livenessProbe.timeoutSeconds }}
+          resources:
 {{ toYaml .Values.aio.resources | indent 12 }}
