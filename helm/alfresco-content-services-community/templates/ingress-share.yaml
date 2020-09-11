@@ -9,7 +9,7 @@ metadata:
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
   annotations:
-{{ toYaml .Values.repository.ingress.annotations | indent 4 }}
+{{ toYaml .Values.share.ingress.annotations | indent 4 }}
 spec:
   rules:
   {{- if .Values.externalHost }}
@@ -23,3 +23,7 @@ spec:
         backend:
           serviceName: {{ template "content-services.shortname" . }}-share
           servicePort: {{ .Values.share.service.externalPort }}
+  {{- if .Values.share.ingress.tls }}
+  tls:
+{{ toYaml .Values.share.ingress.tls | indent 4 }}
+  {{- end -}}

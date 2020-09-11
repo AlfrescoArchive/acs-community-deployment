@@ -10,7 +10,6 @@ metadata:
     release: {{ .Release.Name }}
   annotations:
 {{ toYaml .Values.repository.ingress.annotations | indent 4 }}
-
 spec:
   rules:
   {{- if .Values.externalHost }}
@@ -28,3 +27,7 @@ spec:
         backend:
           serviceName: {{ template "content-services.shortname" . }}-repository
           servicePort: {{ .Values.repository.service.externalPort }}
+  {{- if .Values.repository.ingress.tls }}
+  tls:
+{{ toYaml .Values.repository.ingress.tls | indent 4 }}
+  {{- end -}}
