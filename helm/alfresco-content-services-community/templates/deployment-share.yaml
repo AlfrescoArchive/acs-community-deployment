@@ -1,5 +1,5 @@
 # Defines the deployment for the alfresco share app
-apiVersion: extensions/v1beta1
+apiVersion: {{ template "deployment.apiVersion" . }}
 kind: Deployment
 metadata:
   name: {{ template "content-services.shortname" . }}-share
@@ -10,6 +10,11 @@ metadata:
     heritage: {{ .Release.Service }}
     component: share
 spec:
+  selector:
+    matchLabels:
+      app: {{ template "content-services.shortname" . }}-share
+      release: {{ .Release.Name }}
+      component: share
   replicas: {{ .Values.share.replicaCount }}
   template:
     metadata:

@@ -1,5 +1,5 @@
 # Defines the ingress for the alfresco content repository
-apiVersion: extensions/v1beta1
+apiVersion: {{ template "ingress.apiVersion" . }}
 kind: Ingress
 metadata:
   name: {{ template "content-services.shortname" . }}-repository
