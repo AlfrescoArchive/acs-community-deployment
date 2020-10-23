@@ -3,6 +3,10 @@
 
 **NOTE: This repository is now deprecated and archived as the  [https://github.com/Alfresco/acs-deployment](https://github.com/Alfresco/acs-deployment) repository is now the centralized place to find containerized deployment artefacts and documentation.**
 
+The Docker Compose deployment instructions can be found [here](https://github.com/Alfresco/acs-deployment/blob/master/docs/docker-compose/README.md) and the Helm deployment instructions can be found [here](https://github.com/Alfresco/acs-deployment/blob/master/docs/helm/README.md).
+
+***
+
 This project contains the code for starting the entire Alfresco Content Services (Community Edition) product with **Docker** or **Kubernetes**.
 
 The **master** branch of this repository will endeavour to support the following deployments:
